@@ -1,38 +1,24 @@
 import 'package:allservice/res/constants/color_constants.dart';
 import 'package:allservice/res/constants/font_constants.dart';
-import 'package:allservice/ui/features/recover_password_screen/continue_button.dart';
 import 'package:allservice/ui/features/recover_password_screen/input_field.dart';
-import 'package:allservice/ui/features/recover_password_screen/email_validator.dart';
-import 'package:allservice/ui/features/verification_screen/verification_screen.dart';
 import 'package:auto_route/annotations.dart';
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
 
 @RoutePage()
-class RecoverPasswordScreen extends StatefulWidget {
-  const RecoverPasswordScreen({super.key});
+class NewPasswordScreen extends StatefulWidget {
+  const NewPasswordScreen({super.key});
   @override
-  State<RecoverPasswordScreen> createState() => _RecoverPasswordScreenState();
+  State<NewPasswordScreen> createState() => _NewPasswordScreenState();
 }
 
-class _RecoverPasswordScreenState extends State<RecoverPasswordScreen> {
-  final TextEditingController _emailController = TextEditingController();
-
+class _NewPasswordScreenState extends State<NewPasswordScreen> {
+  final TextEditingController _newPasswordController = TextEditingController();
+  final TextEditingController _confirmPasswordController = TextEditingController();
   @override
   void dispose() {
-    _emailController.dispose();
+    _newPasswordController.dispose();
+    _confirmPasswordController.dispose();
     super.dispose();
-  }
-
-  void _submit() {
-    final emailValidator = Provider.of<EmailValidator>(context, listen: false);
-
-    if (emailValidator.isValid) {
-      Navigator.push(
-        context,
-        MaterialPageRoute(builder: (context) => const VerificationScreen()),
-      );
-    } else {}
   }
 
   @override
@@ -52,18 +38,25 @@ class _RecoverPasswordScreenState extends State<RecoverPasswordScreen> {
               ),
             ),
             InputField(
-              controller: _emailController,
-              hint: 'Электронная почта',
+              controller: _newPasswordController,
+              hint: "Новый пароль",
+            ),
+            const SizedBox(
+              height: 32,
+            ),
+            InputField(
+              controller: _confirmPasswordController,
+              hint: "Подтвердите пароль",
             ),
             Padding(
               padding: const EdgeInsets.only(top: 32, left: 26, right: 26, bottom: 212),
               child: Text(
-                'На указанную электронную почту придет код для восстановления пароля',
+                'Придумайте новый пароль',
                 style: commentStyle,
                 textAlign: TextAlign.center,
               ),
             ),
-            ContinueButton(onPressed: _submit),
+            //ContinueButton(onPressed: _submit),
           ],
         ),
       ),
