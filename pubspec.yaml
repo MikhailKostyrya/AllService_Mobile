@@ -41,6 +41,8 @@ dependencies:
   google_fonts: ^6.2.1
   equatable: ^2.0.5
   toggle_switch: ^2.3.0
+  get_it: ^7.7.0
+  injectable: ^2.4.2
 
 flutter_icons:
   image_path: "assets/icons/app_icon.png"
@@ -76,10 +78,10 @@ flutter:
 
   assets:
     - assets/images/
-  fonts:
-  - family:  CustomIcons
-    fonts:
-      - asset: assets/fonts/CustomIcons.ttf
+  # fonts:
+  # - family:  CustomIcons
+  #   fonts:
+  #     - asset: assets/fonts/CustomIcons.ttf
 
 flutter_intl:
   enabled: true
