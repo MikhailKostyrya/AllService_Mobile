@@ -78,10 +78,10 @@ flutter:
 
   assets:
     - assets/images/
-  # fonts:
-  # - family:  CustomIcons
-  #   fonts:
-  #     - asset: assets/fonts/CustomIcons.ttf
+  fonts:
+  - family: AllServiceIcons
+    fonts:
+      - asset: assets/fonts/AllServiceIcons.ttf
 
 flutter_intl:
   enabled: true

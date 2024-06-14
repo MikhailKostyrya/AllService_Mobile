@@ -1,4 +1,5 @@
 import 'package:allservice/res/constants/constants.dart';
+import 'package:allservice/res/icons/all_service_icons.dart';
 import 'package:auto_route/annotations.dart';
 import 'package:flutter/material.dart';
 
@@ -31,8 +32,8 @@ class _AuthorizationScreenState extends State<AuthorizationScreen> {
                   controller: emailController,
                   decoration: const InputDecoration(
                     labelText: 'Электронная почта',
-                    prefixIcon:  Icon(Icons.email),
-                    //errorText: 'Некорректный ввод'
+                    prefixIcon:  Icon(AllServiceIcons.email, size: 20),
+                    errorText: 'Некорректный ввод'
                   ),
                 ),
               ),
@@ -42,8 +43,8 @@ class _AuthorizationScreenState extends State<AuthorizationScreen> {
                   controller: passwirdController,
                   decoration: const InputDecoration(
                     labelText: 'Пароль',
-                    prefixIcon: Icon(Icons.lock),
-                    //errorText: 'Некорректный ввод'
+                    prefixIcon: Icon(AllServiceIcons.lock, size: 20),
+                    errorText: 'Некорректный ввод'
                   ),
                 ),
               ),
