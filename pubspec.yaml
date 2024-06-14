@@ -76,10 +76,7 @@ flutter:
 
   assets:
     - assets/images/
-  fonts:
-  - family:  CustomIcons
-    fonts:
-      - asset: assets/fonts/CustomIcons.ttf
+    - assets/images/onboarding/
 
 flutter_intl:
   enabled: true
