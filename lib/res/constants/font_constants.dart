@@ -114,3 +114,18 @@ var globalTitleStyle = GoogleFonts.openSans(
   fontSize: 28,
   fontWeight: FontWeight.w500,
 );
+
+var titleTextStyle = GoogleFonts.montserrat(
+  fontSize: 34,
+  fontWeight: FontWeight.w700
+);
+
+var inputFieldTextStyle = GoogleFonts.montserrat(
+  fontSize: 12,
+  fontWeight: FontWeight.w500
+);
+
+var elevateButtonStyle = GoogleFonts.montserrat(
+  fontSize: 17,
+  fontWeight: FontWeight.w500
+);
