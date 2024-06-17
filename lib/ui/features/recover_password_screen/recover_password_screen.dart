@@ -1,8 +1,7 @@
 import 'package:allservice/res/constants/color_constants.dart';
 import 'package:allservice/res/constants/font_constants.dart';
-import 'package:allservice/ui/features/recover_password_screen/continue_button.dart';
-import 'package:allservice/ui/features/recover_password_screen/input_field.dart';
-import 'package:allservice/ui/features/recover_password_screen/email_validator.dart';
+import 'package:allservice/res/icons/all_service_icons.dart';
+import 'package:allservice/ui/features/recover_password_screen/validator_provider.dart';
 import 'package:allservice/ui/features/verification_screen/verification_screen.dart';
 import 'package:auto_route/annotations.dart';
 import 'package:flutter/material.dart';
@@ -25,14 +24,14 @@ class _RecoverPasswordScreenState extends State<RecoverPasswordScreen> {
   }
 
   void _submit() {
-    final emailValidator = Provider.of<EmailValidator>(context, listen: false);
+    final emailValidator = Provider.of<Validator>(context, listen: false);
 
     if (emailValidator.isValid) {
       Navigator.push(
         context,
         MaterialPageRoute(builder: (context) => const VerificationScreen()),
       );
-    } else {}
+    }
   }
 
   @override
@@ -43,6 +42,7 @@ class _RecoverPasswordScreenState extends State<RecoverPasswordScreen> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
+
             Padding(
               padding: const EdgeInsets.only(top: 118, left: 42, right: 42, bottom: 98),
               child: Text(
@@ -51,19 +51,40 @@ class _RecoverPasswordScreenState extends State<RecoverPasswordScreen> {
                 textAlign: TextAlign.center,
               ),
             ),
-            InputField(
-              controller: _emailController,
-              hint: 'Электронная почта',
+
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 26),
+              child: Consumer<Validator>(
+                builder: (context, validator, child) {
+                  return TextFormField(
+                    controller: _emailController,
+                    decoration: InputDecoration(
+                      errorText: validator.isValid ? null : 'Неверный формат электронной почты',
+                      labelText: 'Электронная почта',
+                      labelStyle: hintTextStyle,
+                      prefixIcon: const Icon(AllServiceIcons.lock, size: 20),
+                    ),
+                    onChanged: (value) => validator.updateEmail(value),
+                  );
+                },
+              ),
             ),
+
             Padding(
               padding: const EdgeInsets.only(top: 32, left: 26, right: 26, bottom: 212),
               child: Text(
-                'На указанную электронную почту придет код для восстановления пароля',
-                style: commentStyle,
+                'На указанную электронную почту придет код верификации для восстановления пароля',
                 textAlign: TextAlign.center,
+                style: hintTextStyle,
               ),
             ),
-            ContinueButton(onPressed: _submit),
+            
+            ElevatedButton(
+                style: const ButtonStyle(fixedSize: WidgetStatePropertyAll(Size.fromWidth(237))),
+                onPressed: () {
+                  _submit();
+                },
+                child: const Text('Продолжить')),
           ],
         ),
       ),

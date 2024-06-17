@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-class EmailValidator extends ChangeNotifier {
+class Validator extends ChangeNotifier {
   String _email = '';
   bool _isValid = false;
 
@@ -21,10 +21,16 @@ class EmailValidator extends ChangeNotifier {
     notifyListeners();
   }
 
-  void updatePasswords(String newPassword, String confirmPassword) {
+  void updateNewPassword(String newPassword) {
     _newPassword = newPassword;
+    _isEqual = _isPasswordSEqual(newPassword, _confirmPassword);
+    notifyListeners();
+  }
+
+  void updateConfirmPassword(String confirmPassword) {
     _confirmPassword = confirmPassword;
-    _isEqual = _isPasswordSame(newPassword, confirmPassword);
+    _isEqual = _isPasswordSEqual(_newPassword, confirmPassword);
+    notifyListeners();
   }
 
   bool _validateEmail(String email) {
@@ -34,7 +40,7 @@ class EmailValidator extends ChangeNotifier {
     return emailRegExp.hasMatch(email);
   }
 
-  bool _isPasswordSame(String newPassword, String confirmPassword) {
+  bool _isPasswordSEqual(String newPassword, String confirmPassword) {
     return newPassword == confirmPassword;
   }
 }
