@@ -41,6 +41,7 @@ dependencies:
   google_fonts: ^6.2.1
   equatable: ^2.0.5
   toggle_switch: ^2.3.0
+  pinput: ^5.0.0
 
 flutter_icons:
   image_path: "assets/icons/app_icon.png"
@@ -74,12 +75,12 @@ dependency_overrides:
 flutter:
   uses-material-design: true
 
-  assets:
-    - assets/images/
+  # assets:
+  #   - assets/images/
   fonts:
-  - family:  CustomIcons
+  - family: AllServiceIcons
     fonts:
-      - asset: assets/fonts/CustomIcons.ttf
+      - asset: assets/fonts/AllServiceIcons.ttf
 
 flutter_intl:
   enabled: true

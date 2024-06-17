@@ -1,4 +1,3 @@
-import 'package:allservice/res/constants/font_constants.dart';
 import 'package:allservice/ui/features/recover_password_screen/new_password_screen.dart';
 import 'package:allservice/ui/features/verification_screen/pinput_theme.dart';
 import 'package:flutter/material.dart';
@@ -16,27 +15,28 @@ class _OptTextFieldState extends State<OptTextField> {
   @override
   Widget build(BuildContext context) {
     return Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 1),
-        child: Pinput(
-          length: 4,
-          defaultPinTheme: defaultPinTheme,
-          submittedPinTheme: submittedPinTheme,
-          onCompleted: (pin) {
-            if (pin == '3333') {
-              Navigator.push(
-                context,
-                MaterialPageRoute(builder: (context) => const NewPasswordScreen()),
-              );
-            }
-          },
-          validator: (pin) {
-            if (pin == '3333') {
-              return null;
-            } else {
-              return 'Неверный код верификации. Попробуйте еще раз';
-            }
-          },
-          errorTextStyle: errorTextStyle,
-        ));
+      padding: const EdgeInsets.symmetric(horizontal: 1),
+      child: Pinput(
+        length: 4,
+        defaultPinTheme: defaultPinTheme,
+        submittedPinTheme: submittedPinTheme,
+        onCompleted: (pin) {
+          if (pin == '3333') {
+            Navigator.push(
+              context,
+              MaterialPageRoute(
+                  builder: (context) => const NewPasswordScreen()),
+            );
+          }
+        },
+        validator: (pin) {
+          if (pin == '3333') {
+            return null;
+          } else {
+            return 'Неверный код верификации. Попробуйте еще раз';
+          }
+        },
+      ),
+    );
   }
 }

@@ -1,4 +1,5 @@
 import 'package:allservice/res/constants/color_constants.dart';
+import 'package:allservice/res/constants/constants.dart';
 import 'package:allservice/res/constants/font_constants.dart';
 import 'package:allservice/ui/features/verification_screen/opt_text_field.dart';
 import 'package:auto_route/annotations.dart';
@@ -29,13 +30,15 @@ class _VerificationScreenState extends State<VerificationScreen> {
                 textAlign: TextAlign.center,
               ),
             ),
+
             const OptTextField(),
+            
             Padding(
               padding: const EdgeInsets.only(top: 40, left: 26, right: 26, bottom: 165),
               child: Text(
                 'Проверьте свою электронную почту. Мы отправили вам код верификации на ваш электронный адрес',
-                style: commentStyle,
                 textAlign: TextAlign.center,
+                style: hintTextStyle,
               ),
             ),
           ],
