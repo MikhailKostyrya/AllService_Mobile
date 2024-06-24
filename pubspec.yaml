@@ -74,12 +74,12 @@ dependency_overrides:
 flutter:
   uses-material-design: true
 
-  assets:
-    - assets/images/
-  fonts:
-  - family:  CustomIcons
-    fonts:
-      - asset: assets/fonts/CustomIcons.ttf
+  # assets:
+  #   - assets/images/
+  # fonts:
+  # - family:  CustomIcons
+  #   fonts:
+  #     - asset: assets/fonts/CustomIcons.ttf
 
 flutter_intl:
   enabled: true

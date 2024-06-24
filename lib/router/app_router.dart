@@ -39,7 +39,8 @@ class AppRouter extends _$AppRouter {
       page: FindServiceRoute.page
     ),
     AutoRoute(
-      page: MainRoute.page
+      page: MainRoute.page,
+      initial:true,
     ),
     AutoRoute(
       page: NotificationRoute.page
