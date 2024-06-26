@@ -1,60 +1,66 @@
-import 'package:allservice/di/dio_client/dio_client.dart';
 import 'package:allservice/token/domain/token_refresh_request.dart';
 import 'package:allservice/token/repository/token_repository.dart';
 import 'package:dio/dio.dart';
-import 'package:get_it/get_it.dart';
 
 class JWTInterceptor extends QueuedInterceptor {
-  final tokenRepository = GetIt.instance.get<TokenRepository>();
+  final Dio _dio;
+  final TokenRepository tokenRepository;
 
-  final _dio = GetIt.instance.get<DioClient>().dio;
+  JWTInterceptor(this._dio, this.tokenRepository);
 
   String? get _accessToken => tokenRepository.accessToken;
 
   String? get _refreshToken => tokenRepository.refreshToken;
 
   @override
-  void onRequest(options, handler) {
+  void onRequest(RequestOptions options, RequestInterceptorHandler handler) {
     if (_accessToken != null &&
-        options.path != '/auth/api/token/' &&
-        options.path != '/auth/api/token/refresh/' &&
-        options.path != '/auth/login/' &&
-        options.path != '/auth/register/' &&
-        options.path != '/auth/reset-password/' &&
-        options.path != '/auth/send-activation/' &&
-        options.path != '/auth/verify/') {
+        options.path != '/users/api/token/' &&
+        options.path != '/users/api/token/refresh/' &&
+        options.path != '/users/login/' &&
+        options.path != '/users/register/' &&
+        options.path != '/users/reset-password/' &&
+        options.path != '/users/send-activation/' &&
+        options.path != '/users/verify/') {
       options.headers['Authorization'] = 'Bearer $_accessToken';
     }
 
-    return super.onRequest(options, handler);
+    super.onRequest(options, handler);
   }
 
   @override
   void onResponse(Response response, ResponseInterceptorHandler handler) async {
-    if (response.requestOptions.path.contains('/auth/register/') ||
-        response.requestOptions.path == '/auth/login/') {
-      tokenRepository.saveTokens(
-        accessToken: response.data['accessToken'],
-        refreshToken: response.data['refreshToken'],
-      );
+    if (response.requestOptions.path.contains('/users/register/') ||
+        response.requestOptions.path == '/users/login/') {
+      final accessToken = response.data['access'] as String?;
+      final refreshToken = response.data['refresh'] as String?;
+
+      if (accessToken != null && refreshToken != null) {
+        tokenRepository.saveTokens(
+          accessToken: accessToken,
+          refreshToken: refreshToken,
+        );
+      }
     }
 
     super.onResponse(response, handler);
   }
 
   @override
-  Future onError(err, handler) async {
-    if ((err.response?.statusCode == 403 ||
-            err.response?.statusCode == 401) &&
-        (err.requestOptions.path != '/auth/register/' &&
-            err.requestOptions.path != '/auth/login/')) {
+  Future<void> onError(DioException err, ErrorInterceptorHandler handler) async {
+    if ((err.response?.statusCode == 403 || err.response?.statusCode == 401) &&
+        (err.requestOptions.path != '/users/register/' &&
+            err.requestOptions.path != '/users/login/')) {
       await _refresh();
       if (tokenRepository.auth) {
         final response = await _retry(err.requestOptions);
         handler.resolve(response);
+      } else {
+        handler.next(err);
       }
+    } else {
+      handler.next(err);
     }
-    return super.onError(err, handler);
   }
 
   Future<void> _refresh() async {
@@ -64,17 +70,24 @@ class JWTInterceptor extends QueuedInterceptor {
 
     try {
       final response = await _dio.post(
-        '/auth/api/token/refresh/',
+        '/users/api/token/refresh/',
         data: TokenRefreshRequest(
           refresh: _refreshToken,
         ),
       );
 
       if (response.statusCode == 201 || response.statusCode == 200) {
-        tokenRepository.saveTokens(
-          accessToken: response.data['accessToken'],
-          refreshToken: response.data['refreshToken'],
-        );
+        final accessToken = response.data['access'] as String?;
+        final refreshToken = response.data['refresh'] as String?;
+
+        if (accessToken != null && refreshToken != null) {
+          tokenRepository.saveTokens(
+            accessToken: accessToken,
+            refreshToken: refreshToken,
+          );
+        } else {
+          tokenRepository.deleteTokens();
+        }
       }
     } catch (e) {
       tokenRepository.deleteTokens();
