@@ -21,7 +21,7 @@ class _AllServiceAppState extends State<AllServiceApp> {
         // ],
       ),
       debugShowCheckedModeBanner: false,
-      title: 'ПиИТ',
+      title: 'AllService',
       theme: mainTheme
     );
   }
