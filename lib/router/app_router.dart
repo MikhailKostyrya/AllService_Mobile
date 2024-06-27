@@ -1,4 +1,4 @@
-import 'package:allservice/ui/features/authorization_screen/authorization_screen.dart';
+import 'package:allservice/features/authorization/ui/authorization_screen.dart';
 import 'package:allservice/ui/features/become_seller_screen/become_seller_screen.dart';
 import 'package:allservice/ui/features/contacts_screen/contacts_screen.dart';
 import 'package:allservice/ui/features/edit_profile_screen/edit_profile_screen.dart';
@@ -24,7 +24,8 @@ class AppRouter extends _$AppRouter {
   @override
   List<AutoRoute> get routes => [
     AutoRoute(
-      page: AuthorizationRoute.page
+      page: AuthorizationRoute.page,
+      initial: true
     ),
     AutoRoute(
       page: BecomeSellerRoute.page

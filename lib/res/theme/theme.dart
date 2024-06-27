@@ -5,6 +5,8 @@ final mainTheme = ThemeData(
   elevatedButtonTheme: elevatedButtonThemeData(),
   inputDecorationTheme: inputDecorationTheme(),
   textSelectionTheme: textSelectionThemeData(),
+  progressIndicatorTheme: progressIndicatorTheme(),
+  snackBarTheme: snackBarThemeData(),
 
   scaffoldBackgroundColor: kBackgroundColor,
   primaryColor: kPrimaryColor,
@@ -15,6 +17,25 @@ final mainTheme = ThemeData(
   ),
   useMaterial3: true,
 );
+
+SnackBarThemeData snackBarThemeData() {
+  return SnackBarThemeData(
+    backgroundColor: kGreyColor3,
+    contentTextStyle: snackBarTextStyle,
+    shape:const RoundedRectangleBorder(
+      borderRadius: BorderRadius.only(
+        topLeft: Radius.circular(12),
+        topRight: Radius.circular(12)
+      ),
+    ),
+  );
+}
+
+ProgressIndicatorThemeData progressIndicatorTheme() {
+  return const ProgressIndicatorThemeData(
+    color: kPrimaryColor,
+  );
+}
 
 TextSelectionThemeData textSelectionThemeData() {
   return const TextSelectionThemeData(
@@ -54,7 +75,8 @@ ElevatedButtonThemeData elevatedButtonThemeData() {
           ),
         ),
       ),
-      fixedSize: const WidgetStatePropertyAll(Size.fromHeight(44)),
+
+      fixedSize: const WidgetStatePropertyAll(Size(237, 44)),
       elevation: const WidgetStatePropertyAll(0),
       animationDuration: Duration.zero,
     )
@@ -64,7 +86,7 @@ ElevatedButtonThemeData elevatedButtonThemeData() {
 InputDecorationTheme inputDecorationTheme() {
   return InputDecorationTheme(
     floatingLabelBehavior: FloatingLabelBehavior.never,
-    // alignLabelWithHint: true,
+
     contentPadding: const EdgeInsets.symmetric(vertical: 13.0, horizontal: 48),
 
     filled: true,
