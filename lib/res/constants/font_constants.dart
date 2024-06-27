@@ -1,3 +1,4 @@
+import 'package:allservice/res/constants/color_constants.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
@@ -14,4 +15,10 @@ var inputFieldTextStyle = GoogleFonts.montserrat(
 var elevateButtonStyle = GoogleFonts.montserrat(
   fontSize: 17,
   fontWeight: FontWeight.w500
+);
+
+var snackBarTextStyle = GoogleFonts.montserrat(
+  fontSize: 12,
+  fontWeight: FontWeight.w500,
+  color: kTextColor
 );
