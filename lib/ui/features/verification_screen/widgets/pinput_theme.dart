@@ -21,7 +21,7 @@ final submittedPinTheme = defaultPinTheme.copyWith(
       Radius.circular(15.0),
     ),
     border: Border.all(
-      color: kPrimaryColor, // Цвет границы при фокусе
+      color: kPrimaryColor,
     ),
   ),
 );

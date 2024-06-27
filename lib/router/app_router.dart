@@ -8,13 +8,13 @@ import 'package:allservice/ui/features/notification_screen/notification_screen.d
 import 'package:allservice/ui/features/onboarding_screen/onboarding_screen.dart';
 import 'package:allservice/ui/features/private_policy_screen/private_policy_screen.dart';
 import 'package:allservice/ui/features/profile_screen/profile_screen.dart';
-import 'package:allservice/ui/features/recover_password_screen/recover_password_screen.dart';
+import 'package:allservice/ui/features/recover_password_screen/screens/recover_password_screen.dart';
 import 'package:allservice/ui/features/request_complete_screen/request_complete_screen.dart';
 import 'package:allservice/ui/features/service_history_screen/service_history_screen.dart';
 import 'package:allservice/ui/features/service_list_screen/service_list_screen.dart';
 import 'package:allservice/ui/features/service_request_screen/service_request_screen.dart';
 import 'package:allservice/ui/features/settings_screen/settings_screen.dart';
-import 'package:allservice/ui/features/verification_screen/verification_screen.dart';
+import 'package:allservice/ui/features/verification_screen/screens/verification_screen.dart';
 import 'package:auto_route/auto_route.dart';
 
 part 'app_router.gr.dart';

@@ -1,5 +1,7 @@
-import 'package:allservice/ui/features/recover_password_screen/new_password_screen.dart';
-import 'package:allservice/ui/features/verification_screen/pinput_theme.dart';
+import 'package:allservice/res/constants/color_constants.dart';
+import 'package:allservice/res/constants/font_constants.dart';
+import 'package:allservice/ui/features/recover_password_screen/screens/new_password_screen.dart';
+import 'package:allservice/ui/features/verification_screen/widgets/pinput_theme.dart';
 import 'package:flutter/material.dart';
 import 'package:pinput/pinput.dart';
 
@@ -17,6 +19,7 @@ class _OptTextFieldState extends State<OptTextField> {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 1),
       child: Pinput(
+        errorTextStyle: inputFieldTextStyle.copyWith(color: kErrorColor),
         length: 4,
         defaultPinTheme: defaultPinTheme,
         submittedPinTheme: submittedPinTheme,
@@ -24,8 +27,7 @@ class _OptTextFieldState extends State<OptTextField> {
           if (pin == '3333') {
             Navigator.push(
               context,
-              MaterialPageRoute(
-                  builder: (context) => const NewPasswordScreen()),
+              MaterialPageRoute(builder: (context) => const NewPasswordScreen()),
             );
           }
         },

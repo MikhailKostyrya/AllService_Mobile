@@ -1,7 +1,7 @@
 import 'package:allservice/res/constants/color_constants.dart';
 import 'package:allservice/res/constants/font_constants.dart';
 import 'package:allservice/res/icons/all_service_icons.dart';
-import 'package:allservice/ui/features/recover_password_screen/validator_provider.dart';
+import 'package:allservice/ui/features/recover_password_screen/provider/recover_password_screen_provider.dart';
 import 'package:auto_route/annotations.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -36,17 +36,16 @@ class _NewPasswordScreenState extends State<NewPasswordScreen> {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Padding(
-              padding: const EdgeInsets.only(top: 118, left: 42, right: 42, bottom: 98),
+              padding: const EdgeInsets.only(top: 118, bottom: 98),
               child: Text(
                 "Восстановление пароля",
                 style: titleTextStyle,
                 textAlign: TextAlign.center,
               ),
             ),
-
             Padding(
               padding: const EdgeInsets.only(right: 26, left: 26, bottom: 32),
-              child: Consumer<Validator>(
+              child: Consumer<RecoverPasswordScreenProvider>(
                 builder: (context, validator, child) {
                   return TextFormField(
                     obscureText: true,
@@ -63,10 +62,9 @@ class _NewPasswordScreenState extends State<NewPasswordScreen> {
                 },
               ),
             ),
-
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 26),
-              child: Consumer<Validator>(
+              child: Consumer<RecoverPasswordScreenProvider>(
                 builder: (context, validator, child) {
                   return TextFormField(
                     obscureText: true,
@@ -84,22 +82,21 @@ class _NewPasswordScreenState extends State<NewPasswordScreen> {
                 },
               ),
             ),
-
             Padding(
-              padding: const EdgeInsets.only(top: 32, left: 26, right: 26, bottom: 212),
+              padding: const EdgeInsets.only(top: 20, left: 16, right: 16, bottom: 175),
               child: Text(
                 'Придумайте новый пароль',
                 textAlign: TextAlign.center,
                 style: hintTextStyle,
               ),
             ),
-            
             ElevatedButton(
-                style: const ButtonStyle(fixedSize: WidgetStatePropertyAll(Size.fromWidth(237))),
-                onPressed: () {
-                  _submit();
-                },
-                child: const Text('Продолжить')),
+              style: const ButtonStyle(fixedSize: WidgetStatePropertyAll(Size.fromWidth(237))),
+              onPressed: () {
+                _submit();
+              },
+              child: const Text('Продолжить'),
+            ),
           ],
         ),
       ),
