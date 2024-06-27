@@ -1,5 +1,5 @@
 import 'package:allservice/res/constants/constants.dart';
-import 'package:allservice/ui/features/verification_screen/widgets/opt_text_field.dart';
+import 'package:allservice/features/recover_password/ui/widgets/opt_text_field.dart';
 import 'package:auto_route/annotations.dart';
 import 'package:flutter/material.dart';
 

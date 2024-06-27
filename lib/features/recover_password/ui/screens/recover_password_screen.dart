@@ -1,8 +1,8 @@
 import 'package:allservice/res/constants/color_constants.dart';
 import 'package:allservice/res/constants/font_constants.dart';
 import 'package:allservice/res/icons/all_service_icons.dart';
-import 'package:allservice/ui/features/recover_password_screen/provider/recover_password_screen_provider.dart';
-import 'package:allservice/ui/features/verification_screen/screens/verification_screen.dart';
+import 'package:allservice/features/recover_password/providers/recover_password_screen_provider.dart';
+import 'package:allservice/features/recover_password/ui/screens/verification_screen.dart';
 import 'package:auto_route/annotations.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -46,7 +46,7 @@ class _RecoverPasswordScreenState extends State<RecoverPasswordScreen> {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               Padding(
-                padding: const EdgeInsets.only(top: 127, bottom: 66),
+                padding: const EdgeInsets.only(top: 127, bottom: 63),
                 child: Text(
                   "Восстановление пароля",
                   style: titleTextStyle,

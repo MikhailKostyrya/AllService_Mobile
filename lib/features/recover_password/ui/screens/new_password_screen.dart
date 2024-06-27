@@ -1,7 +1,7 @@
+import 'package:allservice/features/recover_password/providers/new_password_screen_provider.dart';
 import 'package:allservice/res/constants/color_constants.dart';
 import 'package:allservice/res/constants/font_constants.dart';
 import 'package:allservice/res/icons/all_service_icons.dart';
-import 'package:allservice/ui/features/recover_password_screen/provider/recover_password_screen_provider.dart';
 import 'package:auto_route/annotations.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -45,7 +45,7 @@ class _NewPasswordScreenState extends State<NewPasswordScreen> {
             ),
             Padding(
               padding: const EdgeInsets.only(right: 26, left: 26, bottom: 32),
-              child: Consumer<RecoverPasswordScreenProvider>(
+              child: Consumer<NewPasswordScreenProvider>(
                 builder: (context, validator, child) {
                   return TextFormField(
                     obscureText: true,
@@ -64,7 +64,7 @@ class _NewPasswordScreenState extends State<NewPasswordScreen> {
             ),
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 26),
-              child: Consumer<RecoverPasswordScreenProvider>(
+              child: Consumer<NewPasswordScreenProvider>(
                 builder: (context, validator, child) {
                   return TextFormField(
                     obscureText: true,

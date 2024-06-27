@@ -1,7 +1,6 @@
 import 'package:allservice/res/constants/color_constants.dart';
 import 'package:allservice/res/constants/font_constants.dart';
-import 'package:allservice/ui/features/recover_password_screen/screens/new_password_screen.dart';
-import 'package:allservice/ui/features/verification_screen/widgets/pinput_theme.dart';
+import 'package:allservice/res/theme/theme.dart';
 import 'package:flutter/material.dart';
 import 'package:pinput/pinput.dart';
 
@@ -13,31 +12,19 @@ class OptTextField extends StatefulWidget {
 }
 
 class _OptTextFieldState extends State<OptTextField> {
+  final TextEditingController _pinController = TextEditingController();
   bool validPin = false;
   @override
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 1),
       child: Pinput(
+        controller: _pinController,
         errorTextStyle: inputFieldTextStyle.copyWith(color: kErrorColor),
         length: 4,
         defaultPinTheme: defaultPinTheme,
         submittedPinTheme: submittedPinTheme,
-        onCompleted: (pin) {
-          if (pin == '3333') {
-            Navigator.push(
-              context,
-              MaterialPageRoute(builder: (context) => const NewPasswordScreen()),
-            );
-          }
-        },
-        validator: (pin) {
-          if (pin == '3333') {
-            return null;
-          } else {
-            return 'Неверный код верификации. Попробуйте еще раз';
-          }
-        },
+        onCompleted: (pin) {},
       ),
     );
   }
