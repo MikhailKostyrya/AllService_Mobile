@@ -47,7 +47,7 @@ class _AuthorizationScreenState extends State<AuthorizationScreen> {
                                 controller: provider.emailController,
                                 decoration: const InputDecoration(
                                   labelText: 'Электронная почта',
-                                  prefixIcon:  Icon(AllServiceIcons.email, size: 20),
+                                  prefixIcon:  Icon(AllServiceIcons.email, size: 20, color: kIconColor),
                                 ),
                                 validator:(value) => provider.emailValidator(value),
                               ),
@@ -59,7 +59,7 @@ class _AuthorizationScreenState extends State<AuthorizationScreen> {
                                 obscureText: _passwordVisible,
                                 decoration: InputDecoration(
                                   labelText: 'Пароль',
-                                  prefixIcon: const Icon(AllServiceIcons.lock, size: 20),
+                                  prefixIcon: const Icon(AllServiceIcons.lock, size: 20, color: kIconColor),
                                   suffixIcon: _buildSuffixIcon(),
                                 ),
                                 validator: (value) => provider.passwordValidator(value),
@@ -118,7 +118,8 @@ class _AuthorizationScreenState extends State<AuthorizationScreen> {
         _passwordVisible ? Icons.visibility_off : Icons.visibility,
       ),
       style: const ButtonStyle(
-        overlayColor: const WidgetStatePropertyAll(Colors.transparent),
+        overlayColor: WidgetStatePropertyAll(Colors.transparent),
+        iconColor: WidgetStatePropertyAll(kIconColor)
       ),
       onPressed: () {
         setState(() {
