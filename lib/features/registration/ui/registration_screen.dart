@@ -1,5 +1,6 @@
+import 'package:allservice/res/constants/constants.dart';
+import 'package:allservice/res/theme/theme.dart';
 import 'package:flutter/material.dart';
-import 'widgets/registration_form.dart';
 
 class RegistrationScreen extends StatefulWidget {
   const RegistrationScreen({Key? key}) : super(key: key);
@@ -17,7 +18,13 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
           keyboardDismissBehavior: ScrollViewKeyboardDismissBehavior.onDrag,
           child: Padding(
             padding: EdgeInsets.all(16.0),
-            child: RegistrationForm(),
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                SizedBox(height: 110.0),
+                RegistrationForm(),
+              ],
+            ),
           ),
         ),
       ),

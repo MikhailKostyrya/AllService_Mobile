@@ -9,7 +9,7 @@ import 'package:allservice/ui/features/onboarding_screen/onboarding_screen.dart'
 import 'package:allservice/ui/features/private_policy_screen/private_policy_screen.dart';
 import 'package:allservice/ui/features/profile_screen/profile_screen.dart';
 import 'package:allservice/ui/features/recover_password_screen/recover_password_screen.dart';
-import 'package:allservice/features/registration/ui/registration_screen/registration_screen.dart';
+import 'package:allservice/features/registration/ui/registration_screen.dart';
 import 'package:allservice/ui/features/request_complete_screen/request_complete_screen.dart';
 import 'package:allservice/ui/features/service_history_screen/service_history_screen.dart';
 import 'package:allservice/ui/features/service_list_screen/service_list_screen.dart';
