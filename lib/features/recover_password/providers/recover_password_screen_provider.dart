@@ -2,28 +2,34 @@ import 'package:flutter/material.dart';
 
 class RecoverPasswordScreenProvider extends ChangeNotifier {
   final GlobalKey<FormState> formKey = GlobalKey<FormState>();
+  final TextEditingController emailController = TextEditingController();
 
-  String _email = '';
-  bool _isValid = false;
 
-  
+  bool _isLoading = false;
+  bool get isLoading => _isLoading;
 
-  String get email => _email;
-  bool get isValid => _isValid;
+  Future<void> sendEmail(BuildContext context) async {
+    if (formKey.currentState?.validate() ?? false) {
+      _setLoading(true);
+      try {} catch (e) {
+        _setLoading(false);
+        ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text('Failed: $e')));
+      }
+    }
+  }
 
-  void updateEmail(String email) {
-    _email = email;
-    _isValid = _validateEmail(email);
+  void _setLoading(bool value) {
+    _isLoading = value;
     notifyListeners();
   }
 
-  
-  bool _validateEmail(String email) {
-    final RegExp emailRegExp = RegExp(
-      r'^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$',
-    );
-    return emailRegExp.hasMatch(email);
+  String? emailValidator(String? value) {
+    if (value == null || value.isEmpty) {
+      return 'Это поле не может быть пустым';
+    }
+    if (!RegExp("^[a-zA-Z0-9+_.-]+@[a-zA-Z0-9.-]+\\.[a-z]+").hasMatch(value)) {
+      return ("Введена некорректрая почта");
+    }
+    return null;
   }
-
-
 }

@@ -1,27 +1,41 @@
 import 'package:flutter/material.dart';
 
 class NewPasswordScreenProvider extends ChangeNotifier {
+  final TextEditingController newPasswordController = TextEditingController();
+  final TextEditingController confirmPasswordController = TextEditingController();
+  final TextEditingController emailController = TextEditingController();
   final GlobalKey<FormState> formKey = GlobalKey<FormState>();
-  String _newPassword = '';
-  String _confirmPassword = '';
-  bool _isEqual = false;
 
-  String get newPassword => _newPassword;
-  String get confirmPassword => _confirmPassword;
-  bool get isEqual => _isEqual;
+  bool _isLoading = false;
+  bool get isLoading => _isLoading;
 
-  void updateNewPassword(String newPassword) {
-    _newPassword = newPassword;
-    _isEqual = _isPasswordSEqual(newPassword, _confirmPassword);
+  Future<void> sendNewPassword(BuildContext context) async {
+    if (formKey.currentState?.validate() ?? false) {
+      _setLoading(true);
+      try {} catch (e) {
+        _setLoading(false);
+        ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text('Failed: $e')));
+      }
+    }
+  }
+
+  void _setLoading(bool value) {
+    _isLoading = value;
     notifyListeners();
   }
 
-  void updateConfirmPassword(String confirmPassword) {
-    _confirmPassword = confirmPassword;
-    _isEqual = _isPasswordSEqual(_newPassword, confirmPassword);
-    notifyListeners();
+  String? passwordMatchValidator(String? value) {
+    if (value != newPasswordController.text) {
+      return 'Пароли не совпадают';
+    }
+    return null;
   }
-  bool _isPasswordSEqual(String newPassword, String confirmPassword) {
-    return newPassword == confirmPassword;
+
+  @override
+  void dispose() {
+    emailController.dispose();
+    newPasswordController.dispose();
+    confirmPasswordController.dispose();
+    super.dispose();
   }
 }
