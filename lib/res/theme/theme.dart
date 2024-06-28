@@ -47,7 +47,7 @@ ElevatedButtonThemeData elevatedButtonThemeData() {
         side: const BorderSide(color: Colors.black, width: 1),
       ),
     ),
-    fixedSize: const WidgetStatePropertyAll(Size.fromHeight(44)),
+    fixedSize: const WidgetStatePropertyAll(Size(237, 44)),
     elevation: const WidgetStatePropertyAll(0),
     animationDuration: Duration.zero,
   ));

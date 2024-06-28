@@ -1,3 +1,6 @@
+import 'package:allservice/features/recover_password/ui/screens/new_password_screen.dart';
+import 'package:allservice/features/recover_password/ui/screens/recover_password_screen.dart';
+import 'package:allservice/features/recover_password/ui/screens/verification_screen.dart';
 import 'package:allservice/ui/features/authorization_screen/authorization_screen.dart';
 import 'package:allservice/ui/features/become_seller_screen/become_seller_screen.dart';
 import 'package:allservice/ui/features/contacts_screen/contacts_screen.dart';
@@ -8,14 +11,13 @@ import 'package:allservice/ui/features/notification_screen/notification_screen.d
 import 'package:allservice/ui/features/onboarding_screen/onboarding_screen.dart';
 import 'package:allservice/ui/features/private_policy_screen/private_policy_screen.dart';
 import 'package:allservice/ui/features/profile_screen/profile_screen.dart';
-import 'package:allservice/ui/features/recover_password_screen/screens/recover_password_screen.dart';
 import 'package:allservice/ui/features/request_complete_screen/request_complete_screen.dart';
 import 'package:allservice/ui/features/service_history_screen/service_history_screen.dart';
 import 'package:allservice/ui/features/service_list_screen/service_list_screen.dart';
 import 'package:allservice/ui/features/service_request_screen/service_request_screen.dart';
 import 'package:allservice/ui/features/settings_screen/settings_screen.dart';
-import 'package:allservice/ui/features/verification_screen/screens/verification_screen.dart';
 import 'package:auto_route/auto_route.dart';
+import 'package:flutter/material.dart';
 
 part 'app_router.gr.dart';
 
@@ -54,7 +56,8 @@ class AppRouter extends _$AppRouter {
       page: ProfileRoute.page
     ),
     AutoRoute(
-      page: RecoverPasswordRoute.page
+      page: RecoverPasswordRoute.page,
+      initial: true
     ),
     AutoRoute(
       page: RequestCompleteRoute.page

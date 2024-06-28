@@ -1,4 +1,4 @@
-import 'package:allservice/features/recover_password/providers/verification_screen_provider.dart';
+import 'package:allservice/features/recover_password/provider/verification_screen_provider.dart';
 import 'package:allservice/res/constants/constants.dart';
 import 'package:allservice/features/recover_password/ui/widgets/opt_text_field.dart';
 import 'package:auto_route/annotations.dart';
@@ -6,17 +6,18 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 @RoutePage()
-class VerificationScreen extends StatefulWidget {
-  const VerificationScreen({super.key});
+class VerificationScreen extends StatelessWidget {
+  final String email;
 
-  @override
-  State<VerificationScreen> createState() => _VerificationScreenState();
-}
+  const VerificationScreen({
+    super.key,
+    required this.email
+  });
 
-class _VerificationScreenState extends State<VerificationScreen> {
   @override
   Widget build(BuildContext context) {
     final provider = Provider.of<VerificationScreenProvider>(context);
+    
     return Scaffold(
       backgroundColor: kBackgroundColor,
       body: Form(
@@ -25,21 +26,19 @@ class _VerificationScreenState extends State<VerificationScreen> {
           child: Padding(
             padding: const EdgeInsets.symmetric(horizontal: 16),
             child: Column(
-              //mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                Padding(
-                  padding: const EdgeInsets.only(top: 118, bottom: 98),
-                  child: Text(
-                    "Верификация",
-                    style: titleTextStyle,
-                    textAlign: TextAlign.center,
-                  ),
+                const SizedBox(height: 190),
+                Text(
+                  "Верификация",
+                  style: titleTextStyle,
+                  textAlign: TextAlign.center,
                 ),
+                const SizedBox(height: 60),
                 (provider.isLoading)
                     ? const Align(
                         alignment: Alignment.bottomCenter,
                         child: SizedBox(
-                          height: 190,
+                          height: 160,
                           child: Center(
                             child: CircularProgressIndicator(),
                           ),
@@ -47,24 +46,28 @@ class _VerificationScreenState extends State<VerificationScreen> {
                       )
                     : Column(
                         children: [
-                          OptTextFieldWidget(pinController: provider.pinController),
-                          Padding(
-                            padding: const EdgeInsets.only(top: 32, bottom: 165),
+                          SizedBox(
+                            height: 130,
+                            child: OptTextFieldWidget(pinController: provider.pinController)
+                          ),
+                          const SizedBox(height: 32),
+                          SizedBox(
+                            height: 30,
                             child: Text(
                               'Проверьте свою электронную почту. Мы отправили вам код верификации на ваш электронный адрес',
                               textAlign: TextAlign.center,
                               style: hintTextStyle,
                             ),
                           ),
-                          ElevatedButton(
-                            style: const ButtonStyle(fixedSize: WidgetStatePropertyAll(Size.fromWidth(237))),
-                            onPressed: () {
-                              provider.sendPin(context);
-                            },
-                            child: const Text('Продолжить'),
-                          ),
                         ],
                       ),
+                const SizedBox(height: 170),
+                ElevatedButton(
+                  onPressed: () {
+                    provider.verify(context, email);
+                  },
+                  child: const Text('Продолжить'),
+                ),
               ],
             ),
           ),

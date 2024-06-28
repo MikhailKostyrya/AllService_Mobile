@@ -1,4 +1,4 @@
-import 'package:allservice/features/recover_password/providers/new_password_screen_provider.dart';
+import 'package:allservice/features/recover_password/provider/new_password_screen_provider.dart';
 import 'package:allservice/res/constants/color_constants.dart';
 import 'package:allservice/res/constants/font_constants.dart';
 import 'package:allservice/res/icons/all_service_icons.dart';
@@ -8,7 +8,14 @@ import 'package:provider/provider.dart';
 
 @RoutePage()
 class NewPasswordScreen extends StatefulWidget {
-  const NewPasswordScreen({super.key});
+  final String email;
+  final String verificationCode;
+
+  const NewPasswordScreen({
+    super.key,
+    required this.email,
+    required this.verificationCode
+  });
 
   @override
   State<NewPasswordScreen> createState() => _NewPasswordScreenState();
@@ -26,73 +33,76 @@ class _NewPasswordScreenState extends State<NewPasswordScreen> {
       body: Form(
         key: provider.formKey,
         child: SingleChildScrollView(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              const SizedBox(
-                height: 190,
-              ),
-              Text(
-                "Восстановление пароля",
-                style: titleTextStyle,
-                textAlign: TextAlign.center,
-              ),
-              const SizedBox(height: 60),
-              (provider.isLoading)
-                  ? const Align(
-                      alignment: Alignment.bottomCenter,
-                      child: SizedBox(
-                        height: 190,
-                        child: Center(
-                          child: CircularProgressIndicator(),
+          child: Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 16),
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                const SizedBox(height: 190),
+                Text(
+                  "Восстановление пароля",
+                  style: titleTextStyle,
+                  textAlign: TextAlign.center,
+                ),
+                const SizedBox(height: 60),
+                (provider.isLoading)
+                    ? const Align(
+                        alignment: Alignment.bottomCenter,
+                        child: SizedBox(
+                          height: 190,
+                          child: Center(
+                            child: CircularProgressIndicator(),
+                          ),
                         ),
+                      )
+                    : Column(
+                        children: [
+                          SizedBox(
+                            height: 85,
+                            child: TextFormField(
+                              obscureText: _newPasswordVisible,
+                              controller: provider.newPasswordController,
+                              decoration: InputDecoration(
+                                labelText: 'Новый пароль',
+                                labelStyle: hintTextStyle,
+                                prefixIcon: const Icon(AllServiceIcons.lock, size: 20),
+                                suffixIcon: _buildSuffixIconNewPass(),
+                              ),
+                            ),
+                          ),
+                          SizedBox(
+                            height: 90,
+                            child: TextFormField(
+                              obscureText: _confirmPasswordVisible,
+                              controller: provider.confirmPasswordController,
+                              decoration: InputDecoration(
+                                labelText: 'Подтвердите пароль',
+                                labelStyle: hintTextStyle,
+                                prefixIcon: const Icon(AllServiceIcons.lock, size: 20),
+                                suffixIcon: _buildSuffixIconConfirmPass(),
+                              ),
+                              validator: provider.passwordMatchValidator,
+                            ),
+                          ),
+                          SizedBox(
+                            height: 15,
+                            child: Text(
+                              'Придумайте новый пароль',
+                              textAlign: TextAlign.center,
+                              style: hintTextStyle,
+                            ),
+                          ),
+                        ],
                       ),
-                    )
-                  : Column(
-                      children: [
-                        SizedBox(
-                          height: 85,
-                          child: TextFormField(
-                            obscureText: _newPasswordVisible,
-                            controller: provider.newPasswordController,
-                            decoration: InputDecoration(
-                              labelText: 'Новый пароль',
-                              labelStyle: hintTextStyle,
-                              prefixIcon: const Icon(AllServiceIcons.lock, size: 20),
-                              suffixIcon: _buildSuffixIconNewPass(),
-                            ),
-                          ),
-                        ),
-                        SizedBox(
-                          height: 85,
-                          child: TextFormField(
-                            obscureText: _confirmPasswordVisible,
-                            controller: provider.confirmPasswordController,
-                            decoration: InputDecoration(
-                              labelText: 'Подтвердите пароль',
-                              labelStyle: hintTextStyle,
-                              prefixIcon: const Icon(AllServiceIcons.lock, size: 20),
-                              suffixIcon: _buildSuffixIconConfirmPass(),
-                            ),
-                            validator: provider.passwordMatchValidator,
-                          ),
-                        ),
-                        Text(
-                          'Придумайте новый пароль',
-                          textAlign: TextAlign.center,
-                          style: hintTextStyle,
-                        ),
-                        const SizedBox(height: 170),
-                        ElevatedButton(
-                          style: const ButtonStyle(fixedSize: WidgetStatePropertyAll(Size.fromWidth(237))),
-                          onPressed: () {
-                            provider.sendNewPassword(context);
-                          },
-                          child: const Text('Продолжить'),
-                        ),
-                      ],
-                    ),
-            ],
+                const SizedBox(height: 170),
+                ElevatedButton(
+                  onPressed: () {
+                    provider.sendNewPassword(context, widget.email, widget.verificationCode);
+                  },
+                  child: const Text('Продолжить'),
+                ),
+              ],
+            ),
           ),
         ),
       ),
