@@ -6,6 +6,9 @@ final mainTheme = ThemeData(
   elevatedButtonTheme: elevatedButtonThemeData(),
   inputDecorationTheme: inputDecorationTheme(),
   textSelectionTheme: textSelectionThemeData(),
+  progressIndicatorTheme: progressIndicatorTheme(),
+  snackBarTheme: snackBarThemeData(),
+
   scaffoldBackgroundColor: kBackgroundColor,
   primaryColor: kPrimaryColor,
   textTheme: const TextTheme(
@@ -15,6 +18,26 @@ final mainTheme = ThemeData(
   ),
   useMaterial3: true,
 );
+
+
+SnackBarThemeData snackBarThemeData() {
+  return SnackBarThemeData(
+    backgroundColor: kGreyColor3,
+    contentTextStyle: snackBarTextStyle,
+    shape:const RoundedRectangleBorder(
+      borderRadius: BorderRadius.only(
+        topLeft: Radius.circular(12),
+        topRight: Radius.circular(12)
+      ),
+    ),
+  );
+}
+
+ProgressIndicatorThemeData progressIndicatorTheme() {
+  return const ProgressIndicatorThemeData(
+    color: kPrimaryColor,
+  );
+}
 
 TextSelectionThemeData textSelectionThemeData() {
   return const TextSelectionThemeData(
@@ -26,37 +49,45 @@ TextSelectionThemeData textSelectionThemeData() {
 
 ElevatedButtonThemeData elevatedButtonThemeData() {
   return ElevatedButtonThemeData(
-      style: ButtonStyle(
-    textStyle: WidgetStatePropertyAll(elevateButtonStyle),
-    foregroundColor: WidgetStateProperty.resolveWith((Set<WidgetState> states) {
-      if (states.contains(WidgetState.pressed)) {
-        return Colors.white;
-      }
-      return Colors.black;
-    }),
-    backgroundColor: WidgetStateProperty.resolveWith((Set<WidgetState> states) {
-      if (states.contains(WidgetState.pressed)) {
-        return Colors.black;
-      }
-      return Colors.white;
-    }),
-    overlayColor: const WidgetStatePropertyAll(Colors.transparent),
-    shape: WidgetStatePropertyAll(
-      RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(15),
-        side: const BorderSide(color: Colors.black, width: 1),
+    style: ButtonStyle(
+      textStyle: WidgetStatePropertyAll(elevateButtonStyle),
+      foregroundColor: WidgetStateProperty.resolveWith(
+        (Set<WidgetState> states) {
+          if (states.contains(WidgetState.pressed)) {
+            return Colors.white;
+          }
+          return Colors.black;
+        }
       ),
-    ),
-    fixedSize: const WidgetStatePropertyAll(Size(237, 44)),
-    elevation: const WidgetStatePropertyAll(0),
-    animationDuration: Duration.zero,
-  ));
+      backgroundColor: WidgetStateProperty.resolveWith(
+        (Set<WidgetState> states) {
+          if (states.contains(WidgetState.pressed)) {
+            return Colors.black;
+          }
+          return Colors.white;
+        }
+      ),
+      overlayColor: const WidgetStatePropertyAll(Colors.transparent),
+      shape: WidgetStatePropertyAll(
+        RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(15),
+          side: const BorderSide(
+            color: Colors.black,
+            width: 1
+          ),
+        ),
+      ),
+
+      fixedSize: const WidgetStatePropertyAll(Size(237, 44)),
+      elevation: const WidgetStatePropertyAll(0),
+      animationDuration: Duration.zero,
+    )
+  );
 }
 
 InputDecorationTheme inputDecorationTheme() {
   return InputDecorationTheme(
     floatingLabelBehavior: FloatingLabelBehavior.never,
-    // alignLabelWithHint: true,
     contentPadding: const EdgeInsets.symmetric(vertical: 13.0, horizontal: 48),
 
     filled: true,
