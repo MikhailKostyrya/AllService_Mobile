@@ -1,42 +1,36 @@
 // ignore_for_file: use_build_context_synchronously
 
-import 'package:allservice/features/registration/data/repository/registration_repository.dart';
-import 'package:allservice/features/registration/domain/user_registration_request.dart';
-import 'package:allservice/router/app_router.dart';
-import 'package:auto_route/auto_route.dart';
+import 'package:allservice/features/authorization/data/repository/auth_repository.dart';
+import 'package:allservice/features/authorization/domain/user_login_request.dart';
 import 'package:flutter/material.dart';
 
-class RegistrationScreenProvider extends ChangeNotifier {
-  final RegistrationRepository _registrationRepository;
+class AuthorizationScreenProvider extends ChangeNotifier {
+  final AuthRepository _authRepository;
   final TextEditingController emailController = TextEditingController();
   final TextEditingController passwordController = TextEditingController();
-  final TextEditingController firstNameController = TextEditingController();
-  final TextEditingController secondNameController = TextEditingController();
   final GlobalKey<FormState> formKey = GlobalKey<FormState>();
 
-  RegistrationScreenProvider(this._registrationRepository);
+  AuthorizationScreenProvider(this._authRepository);
 
   bool _isLoading = false;
   bool get isLoading => _isLoading;
 
-  Future<void> register(BuildContext context) async {
+  Future<void> login(BuildContext context) async {
     if (formKey.currentState?.validate() ?? false) {
       _setLoading(true);
       try {
-        final request = UserRegistrationRequest(
+        final request = UserLoginRequest(
           email: emailController.text,
           password: passwordController.text,
-          firstName: firstNameController.text,
-          secondName: secondNameController.text,
         );
 
-        await _registrationRepository.register(request: request);
+        await _authRepository.login(request: request);
         _setLoading(false);
-        AutoRouter.of(context).replace(const AuthorizationRoute());
+        // AutoRouter.of(context).pushAndPopUntil(const HomeRoute(), predicate: (_) => false);
       } catch (e) {
         _setLoading(false);
         ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(content: Text('Registration failed: $e'))
+          SnackBar(content: Text('Login failed: $e'))
         );
       }
     }
@@ -47,8 +41,8 @@ class RegistrationScreenProvider extends ChangeNotifier {
     notifyListeners();
   }
 
-  void navigateToRecoverPassword(BuildContext context) {
-    AutoRouter.of(context).push(const RecoverPasswordRoute());
+  void navigateToForgotPassword(BuildContext context) {
+    // AutoRouter.of(context).push(const ForgotPasswordRoute());
   }
 
   String? emailValidator(String? value) {
@@ -71,22 +65,10 @@ class RegistrationScreenProvider extends ChangeNotifier {
     return null;
   }
 
-  String? nameValidator(String? value) {
-    if (value == null || value.isEmpty) {
-      return 'Это поле не может быть пустым';
-    }
-    if (!RegExp(r'^[a-zA-Z]+$').hasMatch(value)) {
-      return ("Имя не может иметь символов");
-    }
-    return null;
-  }
-
   @override
   void dispose() {
     emailController.dispose();
     passwordController.dispose();
-    firstNameController.dispose();
-    secondNameController.dispose();
     super.dispose();
   }
 }

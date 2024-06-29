@@ -81,6 +81,12 @@ abstract class _$AppRouter extends RootStackRouter {
         child: const RecoverPasswordScreen(),
       );
     },
+    RegistrationRoute.name: (routeData) {
+      return AutoRoutePage<dynamic>(
+        routeData: routeData,
+        child: const RegistrationScreen(),
+      );
+    },
     RequestCompleteRoute.name: (routeData) {
       return AutoRoutePage<dynamic>(
         routeData: routeData,
@@ -115,12 +121,6 @@ abstract class _$AppRouter extends RootStackRouter {
       return AutoRoutePage<dynamic>(
         routeData: routeData,
         child: const VerificationScreen(),
-      );
-    },
-    RegistrationRoute.name: (routeData) {
-      return AutoRoutePage<dynamic>(
-        routeData: routeData,
-        child:  RegistrationScreen(),
       );
     },
   };
@@ -281,6 +281,20 @@ class RecoverPasswordRoute extends PageRouteInfo<void> {
 }
 
 /// generated route for
+/// [RegistrationScreen]
+class RegistrationRoute extends PageRouteInfo<void> {
+  const RegistrationRoute({List<PageRouteInfo>? children})
+      : super(
+          RegistrationRoute.name,
+          initialChildren: children,
+        );
+
+  static const String name = 'RegistrationRoute';
+
+  static const PageInfo<void> page = PageInfo<void>(name);
+}
+
+/// generated route for
 /// [RequestCompleteScreen]
 class RequestCompleteRoute extends PageRouteInfo<void> {
   const RequestCompleteRoute({List<PageRouteInfo>? children})
@@ -360,20 +374,6 @@ class VerificationRoute extends PageRouteInfo<void> {
         );
 
   static const String name = 'VerificationRoute';
-
-  static const PageInfo<void> page = PageInfo<void>(name);
-}
-
-/// generated route for
-/// [RegistrationScreen]
-class RegistrationRoute extends PageRouteInfo<void> {
-  const RegistrationRoute({List<PageRouteInfo>? children})
-      : super(
-          RegistrationRoute.name,
-          initialChildren: children,
-        );
-
-  static const String name = 'RegistrationRoute';
 
   static const PageInfo<void> page = PageInfo<void>(name);
 }

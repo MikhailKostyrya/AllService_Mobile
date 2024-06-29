@@ -1,11 +1,11 @@
-import 'package:allservice/ui/features/authorization_screen/authorization_screen.dart';
+import 'package:allservice/features/authorization/ui/authorization_screen.dart';
 import 'package:allservice/ui/features/become_seller_screen/become_seller_screen.dart';
 import 'package:allservice/ui/features/contacts_screen/contacts_screen.dart';
 import 'package:allservice/ui/features/edit_profile_screen/edit_profile_screen.dart';
 import 'package:allservice/ui/features/find_service_screen/find_service_screen.dart';
 import 'package:allservice/ui/features/main_screen/main_screen.dart';
 import 'package:allservice/ui/features/notification_screen/notification_screen.dart';
-import 'package:allservice/ui/features/onboarding_screen/onboarding_screen.dart';
+import 'package:allservice/features/onboarding/ui/onboarding_screen.dart';
 import 'package:allservice/ui/features/private_policy_screen/private_policy_screen.dart';
 import 'package:allservice/ui/features/profile_screen/profile_screen.dart';
 import 'package:allservice/ui/features/recover_password_screen/recover_password_screen.dart';
@@ -25,7 +25,8 @@ class AppRouter extends _$AppRouter {
   @override
   List<AutoRoute> get routes => [
     AutoRoute(
-      page: AuthorizationRoute.page
+      page: AuthorizationRoute.page,
+      initial: true
     ),
     AutoRoute(
       page: BecomeSellerRoute.page
@@ -46,7 +47,8 @@ class AppRouter extends _$AppRouter {
       page: NotificationRoute.page
     ),
     AutoRoute(
-      page: OnboardingRoute.page
+      page: OnboardingRoute.page,
+      initial: true
     ),
     AutoRoute(
       page: PrivatePolicyRoute.page
