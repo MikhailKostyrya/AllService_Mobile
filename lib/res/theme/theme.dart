@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:allservice/res/constants/constants.dart';
+import 'package:pinput/pinput.dart';
 
 final mainTheme = ThemeData(
   elevatedButtonTheme: elevatedButtonThemeData(),
@@ -18,14 +19,15 @@ final mainTheme = ThemeData(
   useMaterial3: true,
 );
 
+
 SnackBarThemeData snackBarThemeData() {
   return SnackBarThemeData(
     backgroundColor: kGreyColor3,
     contentTextStyle: snackBarTextStyle,
     shape:const RoundedRectangleBorder(
       borderRadius: BorderRadius.only(
-        topLeft: Radius.circular(12),
-        topRight: Radius.circular(12)
+        topLeft: Radius.circular(30),
+        topRight: Radius.circular(30)
       ),
     ),
   );
@@ -86,7 +88,6 @@ ElevatedButtonThemeData elevatedButtonThemeData() {
 InputDecorationTheme inputDecorationTheme() {
   return InputDecorationTheme(
     floatingLabelBehavior: FloatingLabelBehavior.never,
-
     contentPadding: const EdgeInsets.symmetric(vertical: 13.0, horizontal: 48),
 
     filled: true,
@@ -122,3 +123,26 @@ OutlineInputBorder errorOutlineInputBorder() {
     borderSide: BorderSide(color: kErrorColor),
   );
 }
+
+final defaultPinTheme = PinTheme(
+  width: 78,
+  height: 130,
+  textStyle: verficationOptStyle,
+  decoration: const BoxDecoration(
+    color: kGreyColor3,
+    borderRadius: BorderRadius.all(
+      Radius.circular(15.0),
+    ),
+  ),
+);
+
+final submittedPinTheme = defaultPinTheme.copyWith(
+  decoration: BoxDecoration(
+    borderRadius: const BorderRadius.all(
+      Radius.circular(15.0),
+    ),
+    border: Border.all(
+      color: kPrimaryColor,
+    ),
+  ),
+);

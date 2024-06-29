@@ -35,3 +35,14 @@ var inputFieldTextStyle = GoogleFonts.montserrat(
   fontSize: 12,
   fontWeight: FontWeight.w500
 );
+
+var hintTextStyle = GoogleFonts.montserrat(
+  fontSize: 12,
+  fontWeight: FontWeight.w500,
+  color: kGreyColor1,
+);
+
+var verficationOptStyle = GoogleFonts.montserrat(
+  fontSize: 64,
+  fontWeight: FontWeight.w300,
+);

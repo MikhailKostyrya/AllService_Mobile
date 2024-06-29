@@ -1,4 +1,4 @@
-import 'package:allservice/token/domain/token_refresh_request.dart';
+import 'package:allservice/token/domain/token_refresh_request/token_refresh_request.dart';
 import 'package:allservice/token/repository/token_repository.dart';
 import 'package:dio/dio.dart';
 
