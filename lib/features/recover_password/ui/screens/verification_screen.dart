@@ -38,7 +38,7 @@ class VerificationScreen extends StatelessWidget {
                     ? const Align(
                         alignment: Alignment.bottomCenter,
                         child: SizedBox(
-                          height: 160,
+                          height: 192,
                           child: Center(
                             child: CircularProgressIndicator(),
                           ),
@@ -53,11 +53,20 @@ class VerificationScreen extends StatelessWidget {
                           const SizedBox(height: 32),
                           SizedBox(
                             height: 30,
-                            child: Text(
-                              'Проверьте свою электронную почту. Мы отправили вам код верификации на ваш электронный адрес',
-                              textAlign: TextAlign.center,
-                              style: hintTextStyle,
-                            ),
+                            child: (provider.isError)
+                                ? Align(
+                                    alignment: Alignment.topCenter,
+                                    child: Text(
+                                      'Неверный код верификации. Попробуйте еще раз',
+                                      textAlign: TextAlign.center,
+                                      style: hintTextStyle.copyWith(color: kErrorColor),
+                                    ),
+                                  )
+                                : Text(
+                                    'Проверьте свою электронную почту. Мы отправили вам код верификации на ваш электронный адрес',
+                                    textAlign: TextAlign.center,
+                                    style: hintTextStyle,
+                                  )
                           ),
                         ],
                       ),

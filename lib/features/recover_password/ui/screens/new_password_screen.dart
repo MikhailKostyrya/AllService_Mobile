@@ -68,10 +68,11 @@ class _NewPasswordScreenState extends State<NewPasswordScreen> {
                                 prefixIcon: const Icon(AllServiceIcons.lock, size: 20),
                                 suffixIcon: _buildSuffixIconNewPass(),
                               ),
+                              validator: (value) => provider.passwordValidator(value),
                             ),
                           ),
                           SizedBox(
-                            height: 90,
+                            height: 85,
                             child: TextFormField(
                               obscureText: _confirmPasswordVisible,
                               controller: provider.confirmPasswordController,
@@ -81,7 +82,7 @@ class _NewPasswordScreenState extends State<NewPasswordScreen> {
                                 prefixIcon: const Icon(AllServiceIcons.lock, size: 20),
                                 suffixIcon: _buildSuffixIconConfirmPass(),
                               ),
-                              validator: provider.passwordMatchValidator,
+                              validator: (value) => provider.passwordMatchValidator(value),
                             ),
                           ),
                           SizedBox(
@@ -94,7 +95,7 @@ class _NewPasswordScreenState extends State<NewPasswordScreen> {
                           ),
                         ],
                       ),
-                const SizedBox(height: 170),
+                const SizedBox(height: 130),
                 ElevatedButton(
                   onPressed: () {
                     provider.sendNewPassword(context, widget.email, widget.verificationCode);

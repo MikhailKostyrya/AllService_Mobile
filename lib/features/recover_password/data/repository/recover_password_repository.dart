@@ -3,23 +3,21 @@ import 'package:allservice/features/recover_password/domain/message_response/mes
 import 'package:allservice/features/recover_password/domain/reset_password_request/reset_password_request.dart';
 import 'package:allservice/features/recover_password/domain/email_request/email_request.dart';
 import 'package:allservice/features/recover_password/domain/verification_code_request/verification_code_request.dart';
-import 'package:flutter/foundation.dart';
 
 class RecoverPasswordRepository {
-  final RecoverPasswordService _forgotPasswordService;
+  final RecoverPasswordService _recoverPasswordService;
 
-  RecoverPasswordRepository(this._forgotPasswordService);
+  RecoverPasswordRepository(this._recoverPasswordService);
 
   Future<MessageResponse> sendVerificationEmail({
     required EmailRequest request
   }) async {
     try {
-      final result = await _forgotPasswordService.sendEmail(
+      final result = await _recoverPasswordService.sendEmail(
         request: request,
       );
       return result;
     } catch (e, s) {
-      debugPrint('Failed to send activation email: $e');
       throw Error.throwWithStackTrace(e, s);
     }
   }
@@ -28,7 +26,7 @@ class RecoverPasswordRepository {
     required VerificationCodeRequest request,
   }) async {
     try {
-      final result = await _forgotPasswordService.verify(
+      final result = await _recoverPasswordService.verify(
         request: request,
       );
       return result;
@@ -41,7 +39,7 @@ class RecoverPasswordRepository {
     required ResetPasswordRequest request,
   }) async {
     try {
-      final result = await _forgotPasswordService.resetPassword(
+      final result = await _recoverPasswordService.resetPassword(
         request: request,
       );
       return result;

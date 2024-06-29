@@ -26,8 +26,8 @@ SnackBarThemeData snackBarThemeData() {
     contentTextStyle: snackBarTextStyle,
     shape:const RoundedRectangleBorder(
       borderRadius: BorderRadius.only(
-        topLeft: Radius.circular(12),
-        topRight: Radius.circular(12)
+        topLeft: Radius.circular(30),
+        topRight: Radius.circular(30)
       ),
     ),
   );

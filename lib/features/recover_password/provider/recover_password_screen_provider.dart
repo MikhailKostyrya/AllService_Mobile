@@ -1,3 +1,5 @@
+// ignore_for_file: use_build_context_synchronously
+
 import 'package:allservice/features/recover_password/data/repository/recover_password_repository.dart';
 import 'package:allservice/features/recover_password/domain/email_request/email_request.dart';
 import 'package:allservice/router/app_router.dart';
@@ -28,7 +30,9 @@ class RecoverPasswordScreenProvider extends ChangeNotifier {
         AutoRouter.of(context).push(VerificationRoute(email: emailController.text));
       } catch (e) {
         _setLoading(false);
-        ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text('Failed: $e')));
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(content: Text('Email failed: $e'))
+        );
       }
     }
   }

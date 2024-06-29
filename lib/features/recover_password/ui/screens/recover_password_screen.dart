@@ -34,7 +34,7 @@ class RecoverPasswordScreen extends StatelessWidget {
                     ? const Align(
                         alignment: Alignment.bottomCenter,
                         child: SizedBox(
-                          height: 190,
+                          height: 115,
                           child: Center(
                             child: CircularProgressIndicator(),
                           ),
@@ -64,7 +64,7 @@ class RecoverPasswordScreen extends StatelessWidget {
                           ),
                         ],
                       ),
-                const SizedBox(height: 170),
+                const SizedBox(height: 200),
                 ElevatedButton(
                   onPressed: () {
                     provider.sendEmail(context);

@@ -1,6 +1,7 @@
+// ignore_for_file: use_build_context_synchronously
+
 import 'package:allservice/features/recover_password/data/repository/recover_password_repository.dart';
 import 'package:allservice/features/recover_password/domain/reset_password_request/reset_password_request.dart';
-import 'package:allservice/router/app_router.dart';
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 
@@ -28,10 +29,12 @@ class NewPasswordScreenProvider extends ChangeNotifier {
         await _recoverPasswordRepository.resetPassword(request: request);
 
         _setLoading(false);
-        AutoRouter.of(context).push(const AuthorizationRoute());
+        AutoRouter.of(context).popUntilRoot();
       } catch (e) {
         _setLoading(false);
-        ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text('Failed: $e')));
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(content: Text('Recover password failed: $e'))
+        );
       }
     }
   }
@@ -41,7 +44,20 @@ class NewPasswordScreenProvider extends ChangeNotifier {
     notifyListeners();
   }
 
+  String? passwordValidator(String? value) {
+    if (value == null || value.isEmpty) {
+      return 'Это поле не может быть пустым';
+    }
+    if (!RegExp(r'^.{4,}$').hasMatch(value)) {
+      return ("Пароль должен быть больше 4 символов");
+    }
+    return null;
+  }
+
   String? passwordMatchValidator(String? value) {
+    if (value == null || value.isEmpty) {
+      return 'Это поле не может быть пустым';
+    }
     if (value != newPasswordController.text) {
       return 'Пароли не совпадают';
     }

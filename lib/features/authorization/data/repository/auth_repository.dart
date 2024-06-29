@@ -1,7 +1,7 @@
 
 import 'package:allservice/features/authorization/data/service/auth_service.dart';
 import 'package:allservice/features/authorization/domain/user_login_request.dart';
-import 'package:allservice/token/domain/jwt_response.dart';
+import 'package:allservice/token/domain/jwt_response/jwt_response.dart';
 
 class AuthRepository {
   final AuthService _authService;

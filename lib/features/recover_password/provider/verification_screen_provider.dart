@@ -1,3 +1,5 @@
+// ignore_for_file: use_build_context_synchronously
+
 import 'package:allservice/features/recover_password/data/repository/recover_password_repository.dart';
 import 'package:allservice/features/recover_password/domain/verification_code_request/verification_code_request.dart';
 import 'package:allservice/router/app_router.dart';
@@ -12,7 +14,10 @@ class VerificationScreenProvider extends ChangeNotifier {
   VerificationScreenProvider(this._recoverPasswordRepository);
 
   bool _isLoading = false;
+  bool _isError = false;
+
   bool get isLoading => _isLoading;
+  bool get isError => _isError;
 
   Future<void> verify(BuildContext context, String email) async {
     if (formKey.currentState?.validate() ?? false) {
@@ -25,17 +30,26 @@ class VerificationScreenProvider extends ChangeNotifier {
         
         await _recoverPasswordRepository.verify(request: request);
 
+        _setError(false);
         _setLoading(false);
         AutoRouter.of(context).push(NewPasswordRoute(email: email, verificationCode: pinController.text));
       } catch (e) {
+        _setError(true);
         _setLoading(false);
-        ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text('Wrong pin: $e')));
+        // ScaffoldMessenger.of(context).showSnackBar(
+        //   SnackBar(content: Text('Verification failed: $e'))
+        // );
       }
     }
   }
 
   void _setLoading(bool value) {
     _isLoading = value;
+    notifyListeners();
+  }
+
+  void _setError(bool value) {
+    _isError = value;
     notifyListeners();
   }
 
