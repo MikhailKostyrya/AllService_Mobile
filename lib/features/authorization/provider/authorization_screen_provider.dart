@@ -2,6 +2,8 @@
 
 import 'package:allservice/features/authorization/data/repository/auth_repository.dart';
 import 'package:allservice/features/authorization/domain/user_login_request.dart';
+import 'package:allservice/router/app_router.dart';
+import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 
 class AuthorizationScreenProvider extends ChangeNotifier {
@@ -41,8 +43,8 @@ class AuthorizationScreenProvider extends ChangeNotifier {
     notifyListeners();
   }
 
-  void navigateToForgotPassword(BuildContext context) {
-    // AutoRouter.of(context).push(const ForgotPasswordRoute());
+  void navigateToRecoverPassword(BuildContext context) {
+    AutoRouter.of(context).push(const RecoverPasswordRoute());
   }
 
   String? emailValidator(String? value) {

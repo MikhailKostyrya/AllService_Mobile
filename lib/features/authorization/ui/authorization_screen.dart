@@ -72,7 +72,9 @@ class _AuthorizationScreenState extends State<AuthorizationScreen> {
                                   'Восстановить пароль',
                                   style: inputFieldTextStyle.copyWith(color: kPrimaryColor),
                                 ),
-                                onTap: () {},
+                                onTap: () {
+                                  provider.navigateToRecoverPassword(context);
+                                },
                               ),
                             ),
                           ],
