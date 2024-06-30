@@ -1,7 +1,6 @@
-// ignore_for_file: use_build_context_synchronously
-
 import 'package:allservice/features/registration/data/repository/registration_repository.dart';
 import 'package:allservice/features/registration/domain/user_registration_request.dart';
+import 'package:allservice/res/constants/color_constants.dart';
 import 'package:allservice/router/app_router.dart';
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
@@ -17,10 +16,17 @@ class RegistrationScreenProvider extends ChangeNotifier {
   RegistrationScreenProvider(this._registrationRepository);
 
   bool _isLoading = false;
+  bool _isCheck = false;
+  Color _checkColor = kIconColor;
+  Color _checkTextColor = kGreyColor1;
+  
   bool get isLoading => _isLoading;
+  bool get isCheck => _isCheck;
+  Color get checkColor => _checkColor;
+  Color get checkTextColor => _checkTextColor;
 
   Future<void> register(BuildContext context) async {
-    if (formKey.currentState?.validate() ?? false) {
+    if ((formKey.currentState?.validate() ?? false) && _isCheck) {
       _setLoading(true);
       try {
         final request = UserRegistrationRequest(
@@ -31,15 +37,18 @@ class RegistrationScreenProvider extends ChangeNotifier {
         );
 
         await _registrationRepository.register(request: request);
+        _changeTextColor();
         _setLoading(false);
-        AutoRouter.of(context).replace(const AuthorizationRoute());
+        navigateToAuthorization(context);
       } catch (e) {
+        _changeTextColor();
         _setLoading(false);
         ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(content: Text('Registration failed: $e'))
         );
       }
     }
+    _changeTextColor();
   }
 
   void _setLoading(bool value) {
@@ -47,8 +56,24 @@ class RegistrationScreenProvider extends ChangeNotifier {
     notifyListeners();
   }
 
-  void navigateToRecoverPassword(BuildContext context) {
-    AutoRouter.of(context).push(const RecoverPasswordRoute());
+  void navigateToAuthorization(BuildContext context) {
+    AutoRouter.of(context).replace(const AuthorizationRoute());
+  }
+
+  void changeIsCheck() {
+    _isCheck = !_isCheck;
+    notifyListeners();
+  }
+
+  void _changeTextColor() {
+    if (_isCheck) {
+      _checkColor = kIconColor;
+      _checkTextColor = kGreyColor1;
+    } else {
+      _checkColor = kErrorColor;
+      _checkTextColor = kErrorColor;
+    }
+    notifyListeners();
   }
 
   String? emailValidator(String? value) {
@@ -75,10 +100,16 @@ class RegistrationScreenProvider extends ChangeNotifier {
     if (value == null || value.isEmpty) {
       return 'Это поле не может быть пустым';
     }
-    if (!RegExp(r'^[a-zA-Z]+$').hasMatch(value)) {
+    if (!RegExp(r'^\p{L}+$', unicode: true).hasMatch(value)) {
       return ("Имя не может иметь символов");
     }
     return null;
+  }
+
+  void reset() {
+    _isCheck = false;
+    _checkColor = kIconColor;
+    _checkTextColor = kGreyColor1;
   }
 
   @override
