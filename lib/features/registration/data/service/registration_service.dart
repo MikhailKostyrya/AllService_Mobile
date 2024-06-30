@@ -1,7 +1,7 @@
 
 import 'dart:async';
+import 'package:allservice/features/recover_password/domain/message_response/message_response.dart';
 import 'package:allservice/features/registration/domain/user_registration_request.dart';
-import 'package:allservice/token/domain/jwt_response.dart';
 import 'package:dio/dio.dart';
 import 'package:retrofit/http.dart';
 
@@ -14,7 +14,7 @@ abstract class RegistrationService {
   ) = _RegistrationService;
 
   @POST('/users/register/')
-  Future<JwtResponse> registerUser({
+  Future<MessageResponse> registerUser({
     @Body() required UserRegistrationRequest request,
   });
 }

@@ -19,14 +19,14 @@ class _RegistrationService implements RegistrationService {
   String? baseUrl;
 
   @override
-  Future<JwtResponse> registerUser(
+  Future<MessageResponse> registerUser(
       {required UserRegistrationRequest request}) async {
     final _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _headers = <String, dynamic>{};
     final _data = request;
     final _result = await _dio
-        .fetch<Map<String, dynamic>>(_setStreamType<JwtResponse>(Options(
+        .fetch<Map<String, dynamic>>(_setStreamType<MessageResponse>(Options(
       method: 'POST',
       headers: _headers,
       extra: _extra,
@@ -42,7 +42,7 @@ class _RegistrationService implements RegistrationService {
               _dio.options.baseUrl,
               baseUrl,
             ))));
-    final value = JwtResponse.fromJson(_result.data!);
+    final value = MessageResponse.fromJson(_result.data!);
     return value;
   }
 
