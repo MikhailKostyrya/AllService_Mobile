@@ -76,7 +76,7 @@ class _AuthorizationScreenState extends State<AuthorizationScreen> {
                                   provider.navigateToRecoverPassword(context);
                                 },
                               ),
-                            ),
+                            )
                           ],
                         ),
                 const SizedBox(height: 170),
@@ -99,11 +99,12 @@ class _AuthorizationScreenState extends State<AuthorizationScreen> {
                             'Создать', 
                             style: inputFieldTextStyle.copyWith(color: kPrimaryColor)
                           ),
-                          onTap: () {},
+                          onTap: () {
+                            provider.navigateToRegistration(context);
+                          },
                         ),
                       ],
                     ),
-                    const SizedBox(height: 30),
                   ],
                 )
               ],

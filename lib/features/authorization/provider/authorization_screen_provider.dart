@@ -47,6 +47,10 @@ class AuthorizationScreenProvider extends ChangeNotifier {
     AutoRouter.of(context).push(const RecoverPasswordRoute());
   }
 
+  void navigateToRegistration(BuildContext context) {
+    AutoRouter.of(context).replace(const RegistrationRoute());
+  }
+
   String? emailValidator(String? value) {
     if (value == null || value.isEmpty) {
       return 'Это поле не может быть пустым';
