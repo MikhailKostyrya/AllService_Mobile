@@ -15,12 +15,7 @@ abstract class _$AppRouter extends RootStackRouter {
 
   @override
   final Map<String, PageFactory> pagesMap = {
-    AuthorizationRoute.name: (routeData) {
-      return AutoRoutePage<dynamic>(
-        routeData: routeData,
-        child: const AuthorizationScreen(),
-      );
-    },
+
     BecomeSellerRoute.name: (routeData) {
       return AutoRoutePage<dynamic>(
         routeData: routeData,
@@ -57,12 +52,7 @@ abstract class _$AppRouter extends RootStackRouter {
         child: const NotificationScreen(),
       );
     },
-    OnboardingRoute.name: (routeData) {
-      return AutoRoutePage<dynamic>(
-        routeData: routeData,
-        child: const OnboardingScreen(),
-      );
-    },
+
     PrivatePolicyRoute.name: (routeData) {
       return AutoRoutePage<dynamic>(
         routeData: routeData,
@@ -115,6 +105,18 @@ abstract class _$AppRouter extends RootStackRouter {
       return AutoRoutePage<dynamic>(
         routeData: routeData,
         child: const VerificationScreen(),
+      );
+    },
+    CatalogRoute.name: (routeData) {
+      return AutoRoutePage<dynamic>(
+        routeData: routeData,
+        child: CatalogScreen(),
+      );
+    },
+    AllServicesRoute.name: (routeData) {
+      return AutoRoutePage<dynamic>(
+        routeData: routeData,
+        child: AllServicesScreen(),
       );
     },
   };
@@ -357,3 +359,33 @@ class VerificationRoute extends PageRouteInfo<void> {
 
   static const PageInfo<void> page = PageInfo<void>(name);
 }
+
+/// generated route for
+/// [CatalogScreen]
+class CatalogRoute extends PageRouteInfo<void> {
+  const CatalogRoute({List<PageRouteInfo>? children})
+      : super(
+          CatalogRoute.name,
+          initialChildren: children,
+        );
+
+  static const String name = 'CatalogRoute';
+
+  static const PageInfo<void> page = PageInfo<void>(name);
+}
+
+/// generated route for
+/// [AllServicesScreen]
+class AllServicesRoute extends PageRouteInfo<void> {
+  const AllServicesRoute({List<PageRouteInfo>? children})
+      : super(
+          AllServicesRoute.name,
+          initialChildren: children,
+        );
+
+  static const String name = 'AllServicesRoute';
+
+  static const PageInfo<void> page = PageInfo<void>(name);
+}
+
+

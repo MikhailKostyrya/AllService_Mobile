@@ -1,4 +1,6 @@
 import 'package:allservice/features/authorization/ui/authorization_screen.dart';
+import 'package:allservice/features/catalog/ui/all_services_screen.dart';
+import 'package:allservice/features/catalog/ui/catalog_screen.dart';
 import 'package:allservice/ui/features/become_seller_screen/become_seller_screen.dart';
 import 'package:allservice/ui/features/contacts_screen/contacts_screen.dart';
 import 'package:allservice/ui/features/edit_profile_screen/edit_profile_screen.dart';
@@ -25,7 +27,7 @@ class AppRouter extends _$AppRouter {
   List<AutoRoute> get routes => [
     AutoRoute(
       page: AuthorizationRoute.page,
-      initial: true
+      //initial: true
     ),
     AutoRoute(
       page: BecomeSellerRoute.page
@@ -47,7 +49,7 @@ class AppRouter extends _$AppRouter {
     ),
     AutoRoute(
       page: OnboardingRoute.page,
-      initial: true
+      //initial: true
     ),
     AutoRoute(
       page: PrivatePolicyRoute.page
@@ -76,5 +78,13 @@ class AppRouter extends _$AppRouter {
     AutoRoute(
       page: VerificationRoute.page
     ),
+     AutoRoute(
+      page: CatalogRoute.page,
+      initial: true
+    ),
+    AutoRoute(
+      page: AllServicesRoute.page,
+      //initial: true
+    )
   ];
 }

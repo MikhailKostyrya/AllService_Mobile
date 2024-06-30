@@ -81,6 +81,7 @@ flutter:
   assets:
     - assets/images/
     - assets/images/onboarding/
+    - assets/images/catalog/
   fonts:
   - family: AllServiceIcons
     fonts:

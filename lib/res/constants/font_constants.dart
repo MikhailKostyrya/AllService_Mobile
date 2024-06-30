@@ -35,3 +35,8 @@ var inputFieldTextStyle = GoogleFonts.montserrat(
   fontSize: 12,
   fontWeight: FontWeight.w500
 );
+
+var servicesTextStyle = GoogleFonts.montserrat(
+  fontSize: 17,
+  fontWeight: FontWeight.w500,
+);

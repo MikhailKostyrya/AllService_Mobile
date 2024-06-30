@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:allservice/res/constants/constants.dart';
 
 final mainTheme = ThemeData(
-  elevatedButtonTheme: elevatedButtonThemeData(),
   inputDecorationTheme: inputDecorationTheme(),
   textSelectionTheme: textSelectionThemeData(),
   progressIndicatorTheme: progressIndicatorTheme(),
@@ -45,43 +44,6 @@ TextSelectionThemeData textSelectionThemeData() {
   );
 }
 
-ElevatedButtonThemeData elevatedButtonThemeData() {
-  return ElevatedButtonThemeData(
-    style: ButtonStyle(
-      textStyle: WidgetStatePropertyAll(elevateButtonStyle),
-      foregroundColor: WidgetStateProperty.resolveWith(
-        (Set<WidgetState> states) {
-          if (states.contains(WidgetState.pressed)) {
-            return Colors.white;
-          }
-          return Colors.black;
-        }
-      ),
-      backgroundColor: WidgetStateProperty.resolveWith(
-        (Set<WidgetState> states) {
-          if (states.contains(WidgetState.pressed)) {
-            return Colors.black;
-          }
-          return Colors.white;
-        }
-      ),
-      overlayColor: const WidgetStatePropertyAll(Colors.transparent),
-      shape: WidgetStatePropertyAll(
-        RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(15),
-          side: const BorderSide(
-            color: Colors.black,
-            width: 1
-          ),
-        ),
-      ),
-
-      fixedSize: const WidgetStatePropertyAll(Size(237, 44)),
-      elevation: const WidgetStatePropertyAll(0),
-      animationDuration: Duration.zero,
-    )
-  );
-}
 
 InputDecorationTheme inputDecorationTheme() {
   return InputDecorationTheme(
