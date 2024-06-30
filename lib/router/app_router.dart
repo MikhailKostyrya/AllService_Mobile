@@ -3,6 +3,7 @@ import 'package:allservice/features/recover_password/ui/screens/recover_password
 import 'package:allservice/features/recover_password/ui/screens/verification_screen.dart';
 import 'package:allservice/features/authorization/ui/authorization_screen.dart';
 import 'package:allservice/features/onboarding/ui/onboarding_screen.dart';
+import 'package:allservice/features/registration/ui/registration_screen.dart';
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 
@@ -18,6 +19,9 @@ class AppRouter extends _$AppRouter {
     ),
     AutoRoute(
       page: AuthorizationRoute.page
+    ),
+    AutoRoute(
+      page: RegistrationRoute.page
     ),
     AutoRoute(
       page: RecoverPasswordRoute.page

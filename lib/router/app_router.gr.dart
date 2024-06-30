@@ -44,6 +44,12 @@ abstract class _$AppRouter extends RootStackRouter {
         child: const RecoverPasswordScreen(),
       );
     },
+    RegistrationRoute.name: (routeData) {
+      return AutoRoutePage<dynamic>(
+        routeData: routeData,
+        child: const RegistrationScreen(),
+      );
+    },
     VerificationRoute.name: (routeData) {
       final args = routeData.argsAs<VerificationRouteArgs>();
       return AutoRoutePage<dynamic>(
@@ -138,6 +144,20 @@ class RecoverPasswordRoute extends PageRouteInfo<void> {
         );
 
   static const String name = 'RecoverPasswordRoute';
+
+  static const PageInfo<void> page = PageInfo<void>(name);
+}
+
+/// generated route for
+/// [RegistrationScreen]
+class RegistrationRoute extends PageRouteInfo<void> {
+  const RegistrationRoute({List<PageRouteInfo>? children})
+      : super(
+          RegistrationRoute.name,
+          initialChildren: children,
+        );
+
+  static const String name = 'RegistrationRoute';
 
   static const PageInfo<void> page = PageInfo<void>(name);
 }
