@@ -40,3 +40,8 @@ var servicesTextStyle = GoogleFonts.montserrat(
   fontSize: 17,
   fontWeight: FontWeight.w500,
 );
+
+var titlCatalogTextStyle = GoogleFonts.montserrat(
+  fontSize: 24,
+  fontWeight: FontWeight.w700
+);
