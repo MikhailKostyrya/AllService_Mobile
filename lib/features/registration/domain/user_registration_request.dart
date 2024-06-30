@@ -19,5 +19,6 @@ class UserRegistrationRequest with _$UserRegistrationRequest {
     required String secondName
   }) = _UserRegistrationRequest;
 
-  factory UserRegistrationRequest.fromJson(Map<String, dynamic> json) => _$UserRegistrationRequestFromJson(json);
+  factory UserRegistrationRequest.fromJson(Map<String, dynamic> json)
+      => _$UserRegistrationRequestFromJson(json);
 }
