@@ -1,5 +1,7 @@
 import 'package:allservice/features/authorization/data/repository/auth_repository.dart';
 import 'package:allservice/features/authorization/data/service/auth_service.dart';
+import 'package:allservice/features/profile/data/repository/profile_repository.dart';
+import 'package:allservice/features/profile/data/service/profile_service.dart';
 import 'package:allservice/res/constants/constants.dart';
 import 'package:allservice/token/interseptor/jwt_interceptor.dart';
 import 'package:allservice/token/repository/token_repository.dart';
@@ -11,9 +13,11 @@ class Dependencies {
   final Dio dio = Dio();
 
   late final AuthService _authService = AuthService(dio);
+  late final ProfileService _profileService = ProfileService(dio);
 
   late final TokenRepository tokenRepository = TokenRepository();
   late final AuthRepository authRepository = AuthRepository(_authService);
+  late final ProfileRepository profileRepository = ProfileRepository(_profileService);
 
   @postConstruct
   Future<void> init() async {

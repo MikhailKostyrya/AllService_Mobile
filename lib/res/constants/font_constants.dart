@@ -31,6 +31,26 @@ var titleTextStyle = GoogleFonts.montserrat(
   fontWeight: FontWeight.w700
 );
 
+var  smallTitleTextStyle = GoogleFonts.montserrat(
+  fontSize: 17,
+  fontWeight: FontWeight.w700
+);
+
+var  meduimTitleTextStyle = GoogleFonts.montserrat(
+  fontSize: 24,
+  fontWeight: FontWeight.bold
+);
+
+var requestDescriptionTextStyle = GoogleFonts.montserrat(
+  fontSize: 16,
+  fontWeight: FontWeight.w600,
+);
+
+var  mainTextSyle = GoogleFonts.montserrat(
+  fontSize: 17,
+  fontWeight: FontWeight.w500
+);
+
 var inputFieldTextStyle = GoogleFonts.montserrat(
   fontSize: 12,
   fontWeight: FontWeight.w500
