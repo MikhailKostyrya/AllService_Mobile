@@ -6,7 +6,11 @@ import 'package:allservice/features/profile/ui/screens/service_history_screen.da
 import 'package:allservice/features/profile/ui/screens/settings_screen.dart';
 import 'package:allservice/features/profile/ui/screens/edit_profile_screen.dart';
 import 'package:allservice/features/onboarding/ui/onboarding_screen.dart';
+import 'package:allservice/features/recover_password/ui/screens/new_password_screen.dart';
+import 'package:allservice/features/recover_password/ui/screens/recover_password_screen.dart';
+import 'package:allservice/features/recover_password/ui/screens/verification_screen.dart';
 import 'package:auto_route/auto_route.dart';
+import 'package:flutter/material.dart';
 
 part 'app_router.gr.dart';
 
