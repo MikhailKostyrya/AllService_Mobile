@@ -7,11 +7,24 @@ import 'package:allservice/features/recover_password/provider/recover_password_s
 import 'package:allservice/features/recover_password/provider/verification_screen_provider.dart';
 import 'package:allservice/features/registration/provider/registration_provider.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  await configureDependencies();  
+  await configureDependencies();
+  
+  SystemChrome.setPreferredOrientations([
+    DeviceOrientation.portraitUp,
+    DeviceOrientation.portraitDown,
+  ]);
+
+  SystemChrome.setSystemUIOverlayStyle(const SystemUiOverlayStyle(
+    statusBarColor: Colors.white,
+    statusBarIconBrightness: Brightness.dark,
+    systemNavigationBarColor: Colors.white,
+    systemNavigationBarIconBrightness: Brightness.dark
+  ));
 
   runApp(
     MultiProvider(
