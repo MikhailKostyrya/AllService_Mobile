@@ -38,16 +38,16 @@ void main() async {
       create: (_) => ServiceDescriptionScreenProvider(),
     ),
     ChangeNotifierProvider(
-          create: (_) => AuthorizationScreenProvider(getIt<Dependencies>().authRepository),
-        ),
-        ChangeNotifierProvider(
-          create: (_) => RecoverPasswordScreenProvider(getIt<Dependencies>().recoverPasswordService),
-        ),
-        ChangeNotifierProvider(
-          create: (_) => VerificationScreenProvider(getIt<Dependencies>().recoverPasswordService),
-        ),
-        ChangeNotifierProvider(
-          create: (_) => NewPasswordScreenProvider(getIt<Dependencies>().recoverPasswordService),
-        ),
+      create: (_) => AuthorizationScreenProvider(getIt<Dependencies>().authRepository),
+    ),
+    ChangeNotifierProvider(
+      create: (_) => RecoverPasswordScreenProvider(getIt<Dependencies>().recoverPasswordService),
+    ),
+    ChangeNotifierProvider(
+      create: (_) => VerificationScreenProvider(getIt<Dependencies>().recoverPasswordService),
+    ),
+    ChangeNotifierProvider(
+      create: (_) => NewPasswordScreenProvider(getIt<Dependencies>().recoverPasswordService),
+    ),
   ], child: const AllServiceApp()));
 }

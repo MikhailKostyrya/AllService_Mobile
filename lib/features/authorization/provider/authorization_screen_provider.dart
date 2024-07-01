@@ -28,12 +28,10 @@ class AuthorizationScreenProvider extends ChangeNotifier {
 
         await _authRepository.login(request: request);
         _setLoading(false);
-        // AutoRouter.of(context).pushAndPopUntil(const HomeRoute(), predicate: (_) => false);
+        AutoRouter.of(context).pushAndPopUntil(const ProfileRoute(), predicate: (_) => false);
       } catch (e) {
         _setLoading(false);
-        ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(content: Text('Login failed: $e'))
-        );
+        ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text('Login failed: $e')));
       }
     }
   }
