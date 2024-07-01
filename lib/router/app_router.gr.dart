@@ -117,6 +117,12 @@ abstract class _$AppRouter extends RootStackRouter {
         child: const VerificationScreen(),
       );
     },
+     HomeServiceRoute.name: (routeData) {
+      return AutoRoutePage<dynamic>(
+        routeData: routeData,
+        child: const HomeServiceScreen(),
+      );
+    },
   };
 }
 
@@ -354,6 +360,20 @@ class VerificationRoute extends PageRouteInfo<void> {
         );
 
   static const String name = 'VerificationRoute';
+
+  static const PageInfo<void> page = PageInfo<void>(name);
+}
+
+/// generated route for
+/// [HomeServiceScreen]
+class HomeServiceRoute extends PageRouteInfo<void> {
+  const HomeServiceRoute({List<PageRouteInfo>? children})
+      : super(
+          HomeServiceRoute.name,
+          initialChildren: children,
+        );
+
+  static const String name = 'HomeServiceRoute';
 
   static const PageInfo<void> page = PageInfo<void>(name);
 }

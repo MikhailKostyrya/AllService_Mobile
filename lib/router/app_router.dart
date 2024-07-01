@@ -1,3 +1,4 @@
+import 'package:allservice/features/home/home_service/home_service_screen.dart';
 import 'package:allservice/ui/features/authorization_screen/authorization_screen.dart';
 import 'package:allservice/ui/features/become_seller_screen/become_seller_screen.dart';
 import 'package:allservice/ui/features/contacts_screen/contacts_screen.dart';
@@ -40,7 +41,7 @@ class AppRouter extends _$AppRouter {
     ),
     AutoRoute(
       page: MainRoute.page,
-      initial:true,
+      //initial:true,
     ),
     AutoRoute(
       page: NotificationRoute.page
@@ -74,6 +75,10 @@ class AppRouter extends _$AppRouter {
     ),
     AutoRoute(
       page: VerificationRoute.page
+    ),
+     AutoRoute(
+      page: HomeServiceRoute.page,
+      initial: true
     ),
   ];
 }
