@@ -30,9 +30,9 @@ class VerificationScreenProvider extends ChangeNotifier {
         
         await _recoverPasswordRepository.verify(request: request);
 
+        await AutoRouter.of(context).push(NewPasswordRoute(email: email, verificationCode: pinController.text));
         _setError(false);
         _setLoading(false);
-        AutoRouter.of(context).push(NewPasswordRoute(email: email, verificationCode: pinController.text));
       } catch (e) {
         _setError(true);
         _setLoading(false);

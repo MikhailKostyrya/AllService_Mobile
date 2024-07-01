@@ -1,3 +1,5 @@
+// ignore_for_file: use_build_context_synchronously
+
 import 'package:allservice/features/registration/data/repository/registration_repository.dart';
 import 'package:allservice/features/registration/domain/user_registration_request.dart';
 import 'package:allservice/res/constants/color_constants.dart';
@@ -37,9 +39,9 @@ class RegistrationScreenProvider extends ChangeNotifier {
         );
 
         await _registrationRepository.register(request: request);
+        navigateToAuthorization(context);
         _changeTextColor();
         _setLoading(false);
-        navigateToAuthorization(context);
       } catch (e) {
         _changeTextColor();
         _setLoading(false);
@@ -56,8 +58,8 @@ class RegistrationScreenProvider extends ChangeNotifier {
     notifyListeners();
   }
 
-  void navigateToAuthorization(BuildContext context) {
-    AutoRouter.of(context).replace(const AuthorizationRoute());
+  void navigateToAuthorization(BuildContext context) async {
+    await AutoRouter.of(context).replace(const AuthorizationRoute());
   }
 
   void changeIsCheck() {

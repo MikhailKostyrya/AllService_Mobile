@@ -26,8 +26,8 @@ class RecoverPasswordScreenProvider extends ChangeNotifier {
         
         await _recoverPasswordRepository.sendVerificationEmail(request: request);
 
+        await AutoRouter.of(context).push(VerificationRoute(email: emailController.text));
         _setLoading(false);
-        AutoRouter.of(context).push(VerificationRoute(email: emailController.text));
       } catch (e) {
         _setLoading(false);
         ScaffoldMessenger.of(context).showSnackBar(

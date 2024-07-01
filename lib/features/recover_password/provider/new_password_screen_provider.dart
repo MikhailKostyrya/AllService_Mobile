@@ -28,8 +28,8 @@ class NewPasswordScreenProvider extends ChangeNotifier {
         
         await _recoverPasswordRepository.resetPassword(request: request);
 
-        _setLoading(false);
         AutoRouter.of(context).popUntilRoot();
+        _setLoading(false);
       } catch (e) {
         _setLoading(false);
         ScaffoldMessenger.of(context).showSnackBar(

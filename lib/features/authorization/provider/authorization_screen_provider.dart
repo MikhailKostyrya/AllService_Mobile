@@ -27,8 +27,8 @@ class AuthorizationScreenProvider extends ChangeNotifier {
         );
 
         await _authRepository.login(request: request);
-        _setLoading(false);
         // AutoRouter.of(context).pushAndPopUntil(const HomeRoute(), predicate: (_) => false);
+        _setLoading(false);
       } catch (e) {
         _setLoading(false);
         ScaffoldMessenger.of(context).showSnackBar(
